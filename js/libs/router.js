@@ -1,4 +1,7 @@
 App.Router.map(function() {
-  this.resource('portfolio');
   this.resource('resume');
+
+  this.resource('projects', function(){
+    this.route('show', {path: '/:project_id'});
+  });
 });

@@ -13,7 +13,7 @@
     <div class="navbar">
       <ul class="nav nav-tabs">
         <li role="presentation">{{#link-to 'index'}}Home{{/link-to}}</li>
-        <li role="presentation">{{#link-to 'portfolio'}}Portfolio{{/link-to}}</li>
+        <li role="presentation">{{#link-to 'projects'}}Projects{{/link-to}}</li>
         <li role="presentation">{{#link-to 'resume'}}Résumé{{/link-to}}</li>
       </ul>
     </div>
@@ -25,8 +25,26 @@
     <h1>Welcome to my home page!</h1>
   </script>
 
-  <script type="text/x-handlebars" id="portfolio">
-    <h1>Welcome to my portfolio page!</h1>
+  <script type="text/x-handlebars" id="projects">
+    <h1>Welcome to my projects!</h1>
+    {{#each project in model}}
+      {{#link-to "projects.show" project}}
+        <li>{{project.name}}</li>
+      {{/link-to}}
+    {{/each}}
+
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" id="projects/show">
+    {{log model}}
+    <h4>Id: {{id}}</h4>
+    <h4>Name: {{name}}</h4>
+    <h4>Description: {{description}}</h4>
+    <h4>Date Created: {{date}}</h4>
+  </script>
+  
+  <script type="text/x-handlebars" id="projects/index">
   </script>
 
   <script type="text/x-handlebars" id="resume">
@@ -38,6 +56,7 @@
   <script src="js/libs/ember-1.10.0.debug.js"></script>
   <script src="js/app.js"></script>
   <script src="js/libs/router.js"></script>
+  <script src="js/libs/routes/projects.js"></script>
   <!-- to activate the test runner, add the "?test" query string parameter -->
   <script src="tests/runner.js"></script>
 </body>
